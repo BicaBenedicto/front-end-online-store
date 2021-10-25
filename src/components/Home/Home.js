@@ -10,6 +10,7 @@ class Home extends Component {
     this.state = {
       search: '',
       category: '',
+      searchList: [],
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -25,12 +26,12 @@ class Home extends Component {
 
   async generateList() {
     const { search, category } = this.state;
-    const searchList = await getProductsFromCategoryAndQuery(category, search);
-    return searchList;
+    const searchList = await getProductsFromCategoryAndQuery('carro', search);
+    this.setState({ searchList: searchList });
   }
 
   render() {
-    const { search } = this.state;
+    const { search, searchList } = this.state;
     return (
       <>
         <header>
@@ -45,7 +46,7 @@ class Home extends Component {
             <button
               data-testid="query-button"
               type="button"
-              onClick={ this.generateList() }
+              onClick={ this.generateList }
             >
               Pesquisar
             </button>
@@ -56,7 +57,7 @@ class Home extends Component {
           </h1>
         </header>
         <main>
-          <CardList />
+          <CardList searchList={ searchList } />
         </main>
       </>
     );

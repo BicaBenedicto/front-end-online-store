@@ -11,17 +11,25 @@ class CardList extends Component {
 
   renderList() {
     const { searchList } = this.props;
-    return searchList.map((searchItem) => (
-      <Card key={ searchItem.id } { ...searchItem } />
+    const searched = searchList.map(({id, title, price, image}) => (
+      <div key={ id } data-testid="product">
+        <img src={image} alt={title} />
+        <span>{title}</span>
+        <span>{price}</span>
+      </div>
     ));
+    return searched;
   }
 
   render() {
-    return (
-      <>
-        {this.renderList()}
-      </>
-    );
+    const { searchList } = this.props;
+    return searchList.map(({ id, title, price, image }) => (
+      <div key={ id } data-testid="product">
+        <img src={image} alt={title} />
+        <span>{title}</span>
+        <span>{price}</span>
+      </div>
+    ));
   }
 }
 

@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 
-export default class card extends Component {
+class Card extends Component {
   render() {
+    const { id, title, price, image } = this.props;
     return (
-      <div>oi</div>
+      <div name={id}>
+        <img src={image} alt={title} />
+        <span>{title}</span>
+        <span>{price}</span>
+      </div>
     );
   }
 }
+
+export default Card;

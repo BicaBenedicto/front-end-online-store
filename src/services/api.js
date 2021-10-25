@@ -15,7 +15,7 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
 }
 
 export async function searchAPI(query) {
-  const fecthSearch = await fecth(`https://api.mercadolibre.com/sites/MLB/search?q=${query}`);
+  const fecthSearch = await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${query}`);
   const jsonSearch = await fecthSearch.json();
   const { results } = jsonSearch;
   const output = results
@@ -24,7 +24,7 @@ export async function searchAPI(query) {
 }
 
 export async function searchCategoryAPI(categoryId) {
-  const fecthSearchCategory = await fecth(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}`);
+  const fecthSearchCategory = await fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}`);
   const jsonSearchCategory = await fecthSearchCategory.json();
   return jsonSearchCategory;
 }
