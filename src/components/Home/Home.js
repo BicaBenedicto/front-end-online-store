@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CartButton from '../Cart/CartButton/CartButton';
 import Categories from '../Categories/Categories';
 
 export default class Home extends Component {
