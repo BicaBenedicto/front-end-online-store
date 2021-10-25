@@ -10,14 +10,10 @@ class Categories extends React.Component {
     this.setCategories = this.setCategories(this);
   }
 
-  componentDidMount() {
-    this.setCategories();
-  }
-
   async setCategories() {
     const categories = await getCategories();
     const allCategories = categories.map((categorie) => (
-      <li key={ categorie.id }>
+      <li data-testid="category" key={ categorie.id }>
         { categorie.name }
       </li>
     ));
