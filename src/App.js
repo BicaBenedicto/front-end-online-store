@@ -1,14 +1,17 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from './components/Home/Home';
+import CartPage from './components/Cart/CartPage/CartPage';
 
-function App() {
-  return (
-    <header>
-      <h1 data-testid="home-initial-message">
-        Digite algum termo de pesquisa ou escolha uma categoria.
-      </h1>
-    </header>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={ Home } />
+          <Route exact path="/cart" component={ CartPage } />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
-
-export default App;
