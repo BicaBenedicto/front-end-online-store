@@ -26,13 +26,13 @@ class Home extends Component {
 
   generateList() {
     const { search, category } = this.state;
-    getProductsFromCategoryAndQuery(category, search).then((data) => {
-    this.setState({ searchList: data })});
+    getProductsFromCategoryAndQuery(category, search).then(({ results }) => {
+      this.setState({ searchList: results });
+    });
   }
 
   render() {
     const { search, searchList } = this.state;
-    // console.log(searchList);
     return (
       <>
         <header>
