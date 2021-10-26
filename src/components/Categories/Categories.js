@@ -15,6 +15,7 @@ class Categories extends React.Component {
     const allCategories = categories.map((categorie) => (
       <li data-testid="category" key={ categorie.id }>
         { categorie.name }
+        console.log(categorie.name);
       </li>
     ));
     this.setState({ categories: allCategories });
