@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Card extends Component {
   render() {
-    const { id, title, price, image } = this.props;
+    const { product, key } = this.props;
+    const { id, title, price, image } = product
     return (
-      <div name={id}>
+      <div key={key} name={id} data-testid='product'>
         <img src={image} alt={title} />
         <span>{title}</span>
         <span>{price}</span>
@@ -12,5 +14,14 @@ class Card extends Component {
     );
   }
 }
+
+Card.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default Card;

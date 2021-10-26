@@ -24,14 +24,15 @@ class Home extends Component {
     });
   }
 
-  async generateList() {
+  generateList() {
     const { search, category } = this.state;
-    const searchList = await getProductsFromCategoryAndQuery('carro', search);
-    this.setState({ searchList: searchList });
+    getProductsFromCategoryAndQuery(category, search).then((data) => {
+    this.setState({ searchList: data })});
   }
 
   render() {
     const { search, searchList } = this.state;
+    // console.log(searchList);
     return (
       <>
         <header>
