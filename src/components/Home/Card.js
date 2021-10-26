@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 class Card extends Component {
   render() {
     const { product, key } = this.props;
-    const { id, title, price, image } = product;
+    const { id, title, price, thumbnail } = product;
     return (
       <div key={ key } name={ id } data-testid="product">
-        <img src={ image } alt={ title } />
+        <img src={ thumbnail } alt={ title } />
         <span>{title}</span>
         <span>{price}</span>
       </div>
@@ -20,7 +20,7 @@ Card.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
   }).isRequired,
   key: PropTypes.string.isRequired,
 };

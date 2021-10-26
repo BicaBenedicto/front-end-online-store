@@ -18,7 +18,7 @@ class Categories extends React.Component {
 
   render() {
     const { categories } = this.state;
-    const { onClickCategory } = this.props;
+    const { generateList } = this.props;
     return (
       <aside>
         <h3>Categorias</h3>
@@ -29,7 +29,7 @@ class Categories extends React.Component {
               data-testid="category"
               key={ category.id }
               id={ category.id }
-              onClick={ onClickCategory }
+              onClick={ generateList }
             >
               { category.name }
             </button>
@@ -41,7 +41,7 @@ class Categories extends React.Component {
 }
 
 Categories.propTypes = {
-  onClickCategory: PropTypes.func.isRequired,
+  generateList: PropTypes.func.isRequired,
 };
 
 export default Categories;
