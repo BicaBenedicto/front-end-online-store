@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
+import Categories from '../Categories/Categories';
 import CartButton from '../Cart/CartButton/CartButton';
 import CardList from './CardList';
 
@@ -58,6 +59,7 @@ class Home extends Component {
           </h1>
         </header>
         <main>
+          <Categories />
           <CardList searchList={ searchList } />
         </main>
       </>
