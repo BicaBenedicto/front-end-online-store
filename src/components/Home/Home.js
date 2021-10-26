@@ -26,19 +26,19 @@ class Home extends Component {
     });
   }
 
-  generateList() {
-    const { search, category } = this.state;
-    getProductsFromCategoryAndQuery(category, search).then(({ results }) => {
-      this.setState({ searchList: results });
-    });
-  }
-
   async onClickCategory({ target }) {
     const { id } = target;
     const { search } = this.state;
     const obj = await getProductsFromCategoryAndQuery(id, search);
     this.setState({
       searchList: obj.results,
+    });
+  }
+
+  generateList() {
+    const { search, category } = this.state;
+    getProductsFromCategoryAndQuery(category, search).then(({ results }) => {
+      this.setState({ searchList: results });
     });
   }
 
@@ -69,7 +69,7 @@ class Home extends Component {
           </h1>
         </header>
         <main>
-          <Categories 
+          <Categories
             onClickCategory={ this.onClickCategory }
           />
           <CardList searchList={ searchList } />
