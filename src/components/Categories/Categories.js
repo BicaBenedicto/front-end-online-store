@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getCategories } from '../../services/api';
 
 class Categories extends React.Component {
@@ -12,25 +13,35 @@ class Categories extends React.Component {
 
   async setCategories() {
     const categories = await getCategories();
-    const allCategories = categories.map((categorie) => (
-      <li data-testid="category" key={ categorie.id }>
-        { categorie.name }
-      </li>
-    ));
-    this.setState({ categories: allCategories });
+    this.setState({ categories });
   }
 
   render() {
     const { categories } = this.state;
+    const { generateList } = this.props;
     return (
       <aside>
         <h3>Categorias</h3>
         <ul>
-          {categories}
+          {categories.map((category) => (
+            <button
+              type="button"
+              data-testid="category"
+              key={ category.id }
+              id={ category.id }
+              onClick={ generateList }
+            >
+              { category.name }
+            </button>
+          ))}
         </ul>
       </aside>
     );
   }
 }
+
+Categories.propTypes = {
+  generateList: PropTypes.func.isRequired,
+};
 
 export default Categories;

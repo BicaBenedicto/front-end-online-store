@@ -25,8 +25,12 @@ class Home extends Component {
     });
   }
 
-  generateList() {
+  generateList({ target }) {
     const { search, category } = this.state;
+    const { id } = target;
+    this.setState({
+      category: id,
+    });
     getProductsFromCategoryAndQuery(category, search).then(({ results }) => {
       this.setState({ searchList: results });
     });
@@ -59,7 +63,9 @@ class Home extends Component {
           </h1>
         </header>
         <main>
-          <Categories />
+          <Categories
+            generateList={ this.generateList }
+          />
           <CardList searchList={ searchList } />
         </main>
       </>
