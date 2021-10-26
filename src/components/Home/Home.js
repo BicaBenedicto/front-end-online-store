@@ -16,6 +16,7 @@ class Home extends Component {
 
     this.onInputChange = this.onInputChange.bind(this);
     this.generateList = this.generateList.bind(this);
+    this.onClickCategory = this.onClickCategory.bind(this);
   }
 
   onInputChange({ target }) {
@@ -29,6 +30,15 @@ class Home extends Component {
     const { search, category } = this.state;
     getProductsFromCategoryAndQuery(category, search).then(({ results }) => {
       this.setState({ searchList: results });
+    });
+  }
+
+  async onClickCategory({ target }) {
+    const { id } = target;
+    const { search } = this.state;
+    const obj = await getProductsFromCategoryAndQuery(id, search);
+    this.setState({
+      searchList: obj.results,
     });
   }
 
@@ -59,7 +69,9 @@ class Home extends Component {
           </h1>
         </header>
         <main>
-          <Categories />
+          <Categories 
+            onClickCategory={ this.onClickCategory }
+          />
           <CardList searchList={ searchList } />
         </main>
       </>

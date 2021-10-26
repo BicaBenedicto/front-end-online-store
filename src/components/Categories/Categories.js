@@ -8,26 +8,25 @@ class Categories extends React.Component {
       categories: [],
     };
     this.setCategories = this.setCategories(this);
-  }
-
-  async setCategories() {
-    const categories = await getCategories();
-    const allCategories = categories.map((categorie) => (
-      <li data-testid="category" key={ categorie.id }>
-        { categorie.name }
-        console.log(categorie.name);
-      </li>
-    ));
-    this.setState({ categories: allCategories });
-  }
+  } 
+  
+  async setCategories() { 
+    const categories = await getCategories();  
+    this.setState({ categories });
+  } 
 
   render() {
     const { categories } = this.state;
+    const { onClickCategory } = this.props;    
     return (
       <aside>
         <h3>Categorias</h3>
         <ul>
-          {categories}
+        {categories.map((category) => (      
+          <li data-testid="category" key={ category.id } id={ category.id } onClick={onClickCategory}>
+            { category.name }
+          </li>
+        ))}
         </ul>
       </aside>
     );
