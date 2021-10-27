@@ -48,6 +48,10 @@ class ProductPage extends Component {
           { price }
         </h2>
         <img src={ image } alt={ name } />
+        <textarea
+          data-testid="product-detail-evaluation"
+          placeholder="Digite sua critica aqui!"
+        />
       </>
     );
   }
