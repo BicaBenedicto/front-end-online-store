@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import CartPage from './components/Cart/CartPage/CartPage';
+import ProductPage from './components/Product/ProductPage/ProductPage';
 
 export default class App extends Component {
   constructor() {
@@ -41,6 +42,7 @@ export default class App extends Component {
           <Route exact path="/cart">
             <CartPage products={ products } />
           </Route>
+          <Route exact path="/product/:categoryId/:id/:title" component={ ProductPage } />
         </Switch>
       </BrowserRouter>
     );

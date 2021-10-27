@@ -19,10 +19,10 @@ export default class CartPage extends Component {
 
   validationEmptyCart() {
     const { products } = this.props;
+    this.setState({ empty: false });
     if (products.length === 0) {
       this.setState({ empty: true });
     }
-    this.setState({ empty: false });
   }
 
   render() {

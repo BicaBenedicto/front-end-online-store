@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Card extends Component {
   render() {
-    const { product, key, saveProducts, cart } = this.props;
-    const { id, title, price, thumbnail } = product;
+    const { product, saveProducts, cart } = this.props;
+    const { category_id: categoryId, id, title, price, thumbnail } = product;
     return (
-      <div key={ key } data-testid="product">
+      <div name={ id } data-testid="product">
         <img src={ thumbnail } alt={ title } />
-        <span data-testid={ cart ? 'shopping-cart-product-name' : '' }>{title}</span>
+        <Link
+          to={ `/product/${categoryId}/${id}/${title}` }
+          data-testid="product-detail-link "
+        >
+          <span data-testid="shopping-cart-product-name">{title}</span>
+        </Link>
         <span>{price}</span>
+        <br />
         {cart
           ? (
             <span data-testid="shopping-cart-product-quantity">1</span>
@@ -32,12 +39,12 @@ class Card extends Component {
 
 Card.propTypes = {
   product: PropTypes.shape({
+    category_id: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     thumbnail: PropTypes.string.isRequired,
   }).isRequired,
-  key: PropTypes.string.isRequired,
   saveProducts: PropTypes.func.isRequired,
   cart: PropTypes.bool.isRequired,
 };
