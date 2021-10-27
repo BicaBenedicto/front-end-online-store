@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
 import Categories from '../Categories/Categories';
 import CartButton from '../Cart/CartButton/CartButton';
@@ -37,6 +38,7 @@ class Home extends Component {
   }
 
   render() {
+    const { saveProducts } = this.props;
     const { search, searchList } = this.state;
     return (
       <>
@@ -63,14 +65,18 @@ class Home extends Component {
           </h1>
         </header>
         <main>
+          <CardList saveProducts={ saveProducts } searchList={ searchList } />
           <Categories
             generateList={ this.generateList }
           />
-          <CardList searchList={ searchList } />
         </main>
       </>
     );
   }
 }
+
+Home.propTypes = {
+  saveProducts: PropTypes.func.isRequired,
+};
 
 export default Home;
