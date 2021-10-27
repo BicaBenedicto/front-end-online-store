@@ -11,7 +11,7 @@ class Card extends Component {
         <img src={ thumbnail } alt={ title } />
         <Link
           to={ `/product/${categoryId}/${id}/${title}` }
-          data-testid="product-detail-link "
+          data-testid="product-detail-link"
         >
           <span data-testid="shopping-cart-product-name">{title}</span>
         </Link>

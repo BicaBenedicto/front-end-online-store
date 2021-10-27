@@ -526,7 +526,7 @@ O que será verificado:
 
 **PRIORIDADE 3** - Na tela de exibição detalhada do produto, permitir adicionar o produto ao carrinho.
 
-- [Tela principal - Adicionar ao carrinho na exibição detalhada](https://github.com/tryber/sd-015-b-project-frontend-online-store/tree/master/wireframes/card_13.png)
+- [Tela principal - Adicionar ao carrinho na exibição detalhada](https://github.com/tryber/sd-015-b-project-frontend-online-à/tree/master/wireframes/card_13.png)
 
 **Observações técnicas**
 
