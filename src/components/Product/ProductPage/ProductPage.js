@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../../../services/api';
 import CartButton from '../../Cart/CartButton/CartButton';
 
-
 class ProductPage extends Component {
   constructor() {
     super();
@@ -42,11 +41,11 @@ class ProductPage extends Component {
 
   render() {
     const { name, image, loading, cart, price, id } = this.state;
-    const { saveProducts } = this.props
+    const { saveProducts } = this.props;
     if (loading) return <h1>Carregando...</h1>;
     return (
       <>
-        <CartButton/>
+        <CartButton />
         <h1 data-testid="product-detail-name">{ name }</h1>
         <h2>
           R$
@@ -83,10 +82,9 @@ ProductPage.propTypes = {
       categoryId: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
-      saveProducts: PropTypes.func.isRequired,
     }).isRequired,
   }).isRequired,
-  
+  saveProducts: PropTypes.func.isRequired,
 };
 
 export default ProductPage;

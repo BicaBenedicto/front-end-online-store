@@ -42,7 +42,14 @@ export default class App extends Component {
           <Route exact path="/cart">
             <CartPage products={ products } />
           </Route>
-          <Route exact path="/product/:categoryId/:id/:title/" render={(props) => <ProductPage {...props} saveProducts={this.saveProducts} />}/>
+          <Route
+            exact
+            path="/product/:categoryId/:id/:title/"
+            render={
+              (props) => (
+                <ProductPage { ...props } saveProducts={ this.saveProducts } />)
+            }
+          />
         </Switch>
       </BrowserRouter>
     );
