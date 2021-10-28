@@ -3,7 +3,54 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class Card extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      quantity: 0,
+      verifyQuantity: true,
+    };
+
+    this.getProductQuantity = this.getProductQuantity.bind(this);
+    this.addProductQuantity = this.addProductQuantity.bind(this);
+    this.removeProductQuantity = this.removeProductQuantity.bind(this);
+    this.verifyMinQuantityPermited = this.verifyMinQuantityPermited.bind(this);
+  }
+
+  componentDidMount() {
+    this.getProductQuantity();
+  }
+
+  getProductQuantity() {
+    const { verifyQuantityProduct } = this.props;
+    this.setState({
+      quantity: verifyQuantityProduct,
+    });
+  }
+
+  addProductQuantity() {
+    this.setState((prevState) => ({
+      quantity: prevState.quantity + 1,
+    }));
+    this.verifyMinQuantityPermited();
+  }
+
+  removeProductQuantity() {
+    this.setState((prevState) => ({
+      quantity: prevState.quantity - 1,
+    }));
+    this.verifyMinQuantityPermited();
+  }
+
+  verifyMinQuantityPermited() {
+    const { quantity } = this.state;
+    const min = 1;
+    this.setState({ verifyQuantity: true });
+    if (quantity > min) this.setState({ verifyQuantity: false });
+  }
+
   render() {
+    const { quantity, verifyQuantity } = this.state;
     const { product, saveProducts, cart } = this.props;
     const { category_id: categoryId, id, title, price, thumbnail } = product;
     return (
@@ -19,7 +66,24 @@ class Card extends Component {
         <br />
         {cart
           ? (
-            <span data-testid="shopping-cart-product-quantity">1</span>
+            <>
+              <button
+                data-testid="product-decrease-quantity"
+                onClick={ this.removeProductQuantity }
+                disabled={ verifyQuantity }
+                type="button"
+              >
+                -
+              </button>
+              <span data-testid="shopping-cart-product-quantity">{quantity}</span>
+              <button
+                data-testid="product-increase-quantity"
+                onClick={ this.addProductQuantity }
+                type="button"
+              >
+                +
+              </button>
+            </>
           )
           : (
             <button
@@ -47,6 +111,7 @@ Card.propTypes = {
   }).isRequired,
   saveProducts: PropTypes.func.isRequired,
   cart: PropTypes.bool.isRequired,
+  verifyQuantityProduct: PropTypes.number.isRequired,
 };
 
 export default Card;
