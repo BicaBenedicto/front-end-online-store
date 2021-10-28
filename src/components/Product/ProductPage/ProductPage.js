@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../../../services/api';
+import CartButton from '../../Cart/CartButton/CartButton';
 
 class ProductPage extends Component {
   constructor() {
     super();
     this.state = {
+      id: '',
       name: '',
       image: '',
       price: '',
-      loading: true,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.clearProductInfo = this.clearProductInfo.bind(this);
@@ -21,7 +22,7 @@ class ProductPage extends Component {
 
   async getProductInfo() {
     const { match: { params: { categoryId, title, id } } } = this.props;
-    this.setState({ name: title });
+    this.setState({ name: title, id });
     const result = await getProductsFromCategoryAndQuery(categoryId, title);
     const product = result.results.find((item) => item.id === id);
     return product;
@@ -33,21 +34,40 @@ class ProductPage extends Component {
     this.setState({
       image: thumbnail,
       price,
-      loading: false,
     });
   }
 
   render() {
-    const { name, image, price, loading } = this.state;
-    if (loading) return <h1>Carregando...</h1>;
+    const { name, image, cart, price, id } = this.state;
+    const { saveProducts, length } = this.props;
     return (
       <>
+        <CartButton length={ length } />
         <h1 data-testid="product-detail-name">{ name }</h1>
         <h2>
           R$
           { price }
         </h2>
         <img src={ image } alt={ name } />
+        <textarea
+          data-testid="product-detail-evaluation"
+          placeholder="Digite sua critica aqui!"
+        />
+        {cart
+          ? (
+            <span data-testid="shopping-cart-product-quantity">1</span>
+          )
+          : (
+            <button
+              data-testid="product-detail-add-to-cart"
+              type="button"
+              onClick={ saveProducts }
+              name={ `${id}|${name}|${price}|${image}` }
+            >
+              Adicionar ao Carrinho
+
+            </button>
+          )}
       </>
     );
   }
@@ -61,6 +81,12 @@ ProductPage.propTypes = {
       id: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
+  saveProducts: PropTypes.func.isRequired,
+  length: PropTypes.number,
+};
+
+ProductPage.defaultProps = {
+  length: 0,
 };
 
 export default ProductPage;
