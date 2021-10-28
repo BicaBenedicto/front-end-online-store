@@ -22,7 +22,11 @@ class Card extends Component {
 
   render() {
     const { product, saveProducts, cart } = this.props;
-    const { category_id: categoryId, id, title, price, thumbnail, quantity } = product;
+    const { category_id: categoryId, id, title,
+      price, thumbnail, quantity, available_quantity: availableQuant,
+      availableQuantity } = product;
+    console.log(availableQuant);
+    console.log(availableQuantity);
     return (
       <div name={ id } data-testid="product">
         <img src={ thumbnail } alt={ title } />
@@ -42,7 +46,8 @@ class Card extends Component {
                 onClick={ this.removeProductQuantity }
                 disabled={ quantity <= 1 }
                 type="button"
-                name={ `${id}|${title}|${price}|${thumbnail}` }
+                name={ `${id}|${title}|${price}|${thumbnail}|${availableQuantity
+                  || availableQuant}` }
               >
                 -
               </button>
@@ -50,8 +55,10 @@ class Card extends Component {
               <button
                 data-testid="product-increase-quantity"
                 onClick={ this.addProductQuantity }
+                disabled={ quantity >= availableQuantity || availableQuant }
                 type="button"
-                name={ `${id}|${title}|${price}|${thumbnail}` }
+                name={ `${id}|${title}|${price}|${thumbnail}|${availableQuantity
+                  || availableQuant}` }
               >
                 +
               </button>
@@ -62,7 +69,8 @@ class Card extends Component {
               data-testid="product-add-to-cart"
               type="button"
               onClick={ saveProducts }
-              name={ `${id}|${title}|${price}|${thumbnail}` }
+              name={ `${id}|${title}|${price}|${thumbnail}|${availableQuantity
+                || availableQuant}` }
             >
               Adicionar ao Carrinho
 
@@ -81,6 +89,8 @@ Card.propTypes = {
     price: PropTypes.number.isRequired,
     thumbnail: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired,
+    available_quantity: PropTypes.number.isRequired,
+    availableQuantity: PropTypes.number.isRequired,
   }).isRequired,
   saveProducts: PropTypes.func.isRequired,
   cart: PropTypes.bool.isRequired,
