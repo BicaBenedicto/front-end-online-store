@@ -6,53 +6,23 @@ class Card extends Component {
   constructor() {
     super();
 
-    this.state = {
-      quantity: 0,
-      verifyQuantity: true,
-    };
-
-    this.getProductQuantity = this.getProductQuantity.bind(this);
     this.addProductQuantity = this.addProductQuantity.bind(this);
     this.removeProductQuantity = this.removeProductQuantity.bind(this);
-    this.verifyMinQuantityPermited = this.verifyMinQuantityPermited.bind(this);
   }
 
-  componentDidMount() {
-    this.getProductQuantity();
+  addProductQuantity(event) {
+    const { saveProducts } = this.props;
+    saveProducts(event);
   }
 
-  getProductQuantity() {
-    const { verifyQuantityProduct } = this.props;
-    this.setState({
-      quantity: verifyQuantityProduct,
-    });
-  }
-
-  addProductQuantity() {
-    this.setState((prevState) => ({
-      quantity: prevState.quantity + 1,
-    }));
-    this.verifyMinQuantityPermited();
-  }
-
-  removeProductQuantity() {
-    this.setState((prevState) => ({
-      quantity: prevState.quantity - 1,
-    }));
-    this.verifyMinQuantityPermited();
-  }
-
-  verifyMinQuantityPermited() {
-    const { quantity } = this.state;
-    const min = 1;
-    this.setState({ verifyQuantity: true });
-    if (quantity > min) this.setState({ verifyQuantity: false });
+  removeProductQuantity(event) {
+    const { removeProductQuantity } = this.props;
+    removeProductQuantity(event);
   }
 
   render() {
-    const { quantity, verifyQuantity } = this.state;
     const { product, saveProducts, cart } = this.props;
-    const { category_id: categoryId, id, title, price, thumbnail } = product;
+    const { category_id: categoryId, id, title, price, thumbnail, quantity } = product;
     return (
       <div name={ id } data-testid="product">
         <img src={ thumbnail } alt={ title } />
@@ -70,8 +40,9 @@ class Card extends Component {
               <button
                 data-testid="product-decrease-quantity"
                 onClick={ this.removeProductQuantity }
-                disabled={ verifyQuantity }
+                disabled={ quantity <= 1 }
                 type="button"
+                name={ `${id}|${title}|${price}|${thumbnail}` }
               >
                 -
               </button>
@@ -80,6 +51,7 @@ class Card extends Component {
                 data-testid="product-increase-quantity"
                 onClick={ this.addProductQuantity }
                 type="button"
+                name={ `${id}|${title}|${price}|${thumbnail}` }
               >
                 +
               </button>
@@ -108,10 +80,11 @@ Card.propTypes = {
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     thumbnail: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
   }).isRequired,
   saveProducts: PropTypes.func.isRequired,
   cart: PropTypes.bool.isRequired,
-  verifyQuantityProduct: PropTypes.number.isRequired,
+  removeProductQuantity: PropTypes.func.isRequired,
 };
 
 export default Card;

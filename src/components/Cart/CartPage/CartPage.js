@@ -11,7 +11,6 @@ export default class CartPage extends Component {
     };
 
     this.validationEmptyCart = this.validationEmptyCart.bind(this);
-    this.verifyQuantityProduct = this.verifyQuantityProduct.bind(this);
   }
 
   componentDidMount() {
@@ -26,24 +25,19 @@ export default class CartPage extends Component {
     }
   }
 
-  verifyQuantityProduct({ id }) {
-    const { products } = this.props;
-    const filterId = products.filter((product) => product.id === id);
-    return filterId.length;
-  }
-
   render() {
     const { empty } = this.state;
-    const { products } = this.props;
+    const { products, saveProducts, removeProductQuantity } = this.props;
     return (
       empty ? <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
         : (
-          products.filter((product) => product.id).map((product) => (
+          products.map((product) => (
             <Card
               key={ product.id }
               cart
               product={ product }
-              verifyQuantityProduct={ this.verifyQuantityProduct(product) }
+              saveProducts={ saveProducts }
+              removeProductQuantity={ removeProductQuantity }
             />
           ))
         )
@@ -53,4 +47,11 @@ export default class CartPage extends Component {
 
 CartPage.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  saveProducts: PropTypes.func,
+  removeProductQuantity: PropTypes.func,
+};
+
+CartPage.defaultProps = {
+  saveProducts: () => {},
+  removeProductQuantity: () => {},
 };
