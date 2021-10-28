@@ -32,13 +32,11 @@ export default class App extends Component {
   getLengthProducts() {
     const { products } = this.state;
     const lengthProducts = products.reduce((acc, product) => product.quantity + acc, 0);
-    console.log(lengthProducts);
     this.setState({ length: lengthProducts });
   }
 
   loadProductsInStorage() {
     const recoverProducts = localStorage.getItem('products');
-    console.log();
     this.setState({ products: JSON.parse(recoverProducts) });
   }
 
@@ -54,12 +52,16 @@ export default class App extends Component {
     const title = nameSplit[1];
     const price = nameSplit[2];
     const thumbnail = nameSplit[3];
+    const availableQuantity = nameSplit[4];
+    const freeShipping = nameSplit[5];
     const product = {
       id,
       title,
       price,
       thumbnail,
       quantity: 1,
+      availableQuantity,
+      freeShipping,
     };
     this.setState((prevState) => ({
       products: (prevState.products.some((element) => element.id === product.id)
@@ -71,6 +73,8 @@ export default class App extends Component {
               price: element.price,
               thumbnail: element.thumbnail,
               quantity: element.quantity + 1,
+              availableQuantity: element.availableQuantity,
+              freeShipping: element.freeShipping,
             });
           }
           return element;
@@ -86,12 +90,16 @@ export default class App extends Component {
     const title = nameSplit[1];
     const price = nameSplit[2];
     const thumbnail = nameSplit[3];
+    const availableQuantity = nameSplit[4];
+    const freeShipping = nameSplit[5];
     const product = {
       id,
       title,
       price,
       thumbnail,
       quantity: 1,
+      availableQuantity,
+      freeShipping,
     };
     this.setState((prevState) => ({
       products: prevState.products.map((element) => {
@@ -102,6 +110,8 @@ export default class App extends Component {
             price: element.price,
             thumbnail: element.thumbnail,
             quantity: element.quantity - 1,
+            availableQuantity: element.availableQuantity,
+            freeShipping: element.freeShipping,
           });
         }
         return element;
