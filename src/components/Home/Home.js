@@ -49,7 +49,7 @@ class Home extends Component {
           </h1>
           <div className="search-area">
             <input
-              id="search-input"
+              className="search-input"
               data-testid="query-input"
               type="text"
               value={ search }

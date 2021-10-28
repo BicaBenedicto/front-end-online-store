@@ -12,7 +12,7 @@ class CartButton extends Component {
           <img
             src="https://icon-library.com/images/white-shopping-cart-icon/white-shopping-cart-icon-9.jpg"
             alt="cart"
-            id="cartButtonImage"
+            className="cartButtonImage"
           />
 
         </Link>
