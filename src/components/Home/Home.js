@@ -4,6 +4,7 @@ import { getProductsFromCategoryAndQuery } from '../../services/api';
 import Categories from '../Categories/Categories';
 import CartButton from '../Cart/CartButton/CartButton';
 import CardList from './CardList';
+import './Home.css';
 
 class Home extends Component {
   constructor() {
@@ -42,8 +43,11 @@ class Home extends Component {
     const { search, searchList } = this.state;
     return (
       <>
-        <header>
-          <div>
+        <header className="header">
+          <h1 data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </h1>
+          <div className="search-area">
             <input
               id="search-input"
               data-testid="query-input"
@@ -60,15 +64,12 @@ class Home extends Component {
             </button>
             <CartButton length={ length } />
           </div>
-          <h1 data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </h1>
         </header>
         <main>
-          <CardList saveProducts={ saveProducts } searchList={ searchList } />
           <Categories
             generateList={ this.generateList }
           />
+          <CardList saveProducts={ saveProducts } searchList={ searchList } />
         </main>
       </>
     );

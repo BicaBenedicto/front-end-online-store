@@ -1,0 +1,30 @@
+
+.productCard {
+  display: flex;
+  flex-flow: row wrap;
+  height: 400px;
+  margin: 5px 20px;
+  width: 30%;
+}
+
+.productCard a {
+  flex-basis: 100%;
+  font-size: 18px;
+  height: 10px;
+  margin: 10px 0;
+}
+
+.productCard img {
+  flex-basis: 100%;
+  justify-self: center;
+  max-width: 150px;
+}
+
+.productCard button {
+  flex-basis: 100%;
+}
+
+.productCard p {
+  font-size: 15px;
+  margin-top: 30px;
+}

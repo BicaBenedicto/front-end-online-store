@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
+import './CardList.css';
 
 class CardList extends Component {
   render() {
     const { searchList, saveProducts } = this.props;
     return (
-      <section>
+      <section className="cardList">
         {searchList.map(
           (product) => (<Card
             key={ product.id }
