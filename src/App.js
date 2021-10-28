@@ -52,6 +52,7 @@ export default class App extends Component {
     const price = nameSplit[2];
     const thumbnail = nameSplit[3];
     const availableQuantity = nameSplit[4];
+    const freeShipping = nameSplit[5];
     const product = {
       id,
       title,
@@ -59,6 +60,7 @@ export default class App extends Component {
       thumbnail,
       quantity: 1,
       availableQuantity,
+      freeShipping,
     };
     this.setState((prevState) => ({
       products: (prevState.products.some((element) => element.id === product.id)
@@ -71,6 +73,7 @@ export default class App extends Component {
               thumbnail: element.thumbnail,
               quantity: element.quantity + 1,
               availableQuantity: element.availableQuantity,
+              freeShipping: element.freeShipping,
             });
           }
           return element;
@@ -87,6 +90,7 @@ export default class App extends Component {
     const price = nameSplit[2];
     const thumbnail = nameSplit[3];
     const availableQuantity = nameSplit[4];
+    const freeShipping = nameSplit[5];
     const product = {
       id,
       title,
@@ -94,6 +98,7 @@ export default class App extends Component {
       thumbnail,
       quantity: 1,
       availableQuantity,
+      freeShipping,
     };
     this.setState((prevState) => ({
       products: prevState.products.map((element) => {
@@ -105,6 +110,7 @@ export default class App extends Component {
             thumbnail: element.thumbnail,
             quantity: element.quantity - 1,
             availableQuantity: element.availableQuantity,
+            freeShipping: element.freeShipping,
           });
         }
         return element;
