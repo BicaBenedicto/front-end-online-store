@@ -6,13 +6,24 @@ class Card extends Component {
   constructor() {
     super();
 
+    this.state = {
+      freeShipping: false,
+    };
+
     this.addProductQuantity = this.addProductQuantity.bind(this);
     this.removeProductQuantity = this.removeProductQuantity.bind(this);
+    this.verifyShipping = this.verifyShipping.bind(this);
+    this.getShipping = this.getShipping.bind(this);
   }
 
-  addProductQuantity(event) {
-    const { saveProducts } = this.props;
-    saveProducts(event);
+  componentDidMount() {
+    this.getShipping();
+  }
+
+  getShipping() {
+    this.setState({
+      freeShipping: this.verifyShipping(),
+    });
   }
 
   removeProductQuantity(event) {
@@ -20,12 +31,31 @@ class Card extends Component {
     removeProductQuantity(event);
   }
 
+  addProductQuantity(event) {
+    const { saveProducts } = this.props;
+    saveProducts(event);
+  }
+
+  verifyShipping() {
+    const { product } = this.props;
+    const { shipping } = product;
+    if (shipping) {
+      const { free_shipping: freeShip } = shipping;
+      return freeShip;
+    }
+    return false;
+  }
+
   render() {
+    const { freeShipping } = this.state;
     const { product, saveProducts, cart } = this.props;
-    const { category_id: categoryId, id, title, price, thumbnail, quantity } = product;
+    const { category_id: categoryId, id, title,
+      price, thumbnail, quantity, available_quantity: availableQuant,
+      availableQuantity } = product;
     return (
       <div name={ id } data-testid="product">
         <img src={ thumbnail } alt={ title } />
+        {(freeShipping) && <span data-testid="free-shipping">Frete Grátis</span>}
         <Link
           to={ `/product/${categoryId}/${id}/${title}` }
           data-testid="product-detail-link"
@@ -42,7 +72,8 @@ class Card extends Component {
                 onClick={ this.removeProductQuantity }
                 disabled={ quantity <= 1 }
                 type="button"
-                name={ `${id}|${title}|${price}|${thumbnail}` }
+                name={ `${id}|${title}|${price}|${thumbnail}|${availableQuantity
+                  || availableQuant}` }
               >
                 -
               </button>
@@ -50,8 +81,10 @@ class Card extends Component {
               <button
                 data-testid="product-increase-quantity"
                 onClick={ this.addProductQuantity }
+                disabled={ quantity >= availableQuantity || availableQuant }
                 type="button"
-                name={ `${id}|${title}|${price}|${thumbnail}` }
+                name={ `${id}|${title}|${price}|${thumbnail}|${availableQuantity
+                  || availableQuant}` }
               >
                 +
               </button>
@@ -62,7 +95,8 @@ class Card extends Component {
               data-testid="product-add-to-cart"
               type="button"
               onClick={ saveProducts }
-              name={ `${id}|${title}|${price}|${thumbnail}` }
+              name={ `${id}|${title}|${price}|${thumbnail}|${availableQuantity
+                || availableQuant}` }
             >
               Adicionar ao Carrinho
 
@@ -81,6 +115,11 @@ Card.propTypes = {
     price: PropTypes.number.isRequired,
     thumbnail: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired,
+    available_quantity: PropTypes.number.isRequired,
+    availableQuantity: PropTypes.number.isRequired,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }).isRequired,
   }).isRequired,
   saveProducts: PropTypes.func.isRequired,
   cart: PropTypes.bool.isRequired,
