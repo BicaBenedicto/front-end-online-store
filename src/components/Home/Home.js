@@ -38,7 +38,7 @@ class Home extends Component {
   }
 
   render() {
-    const { saveProducts, products } = this.props;
+    const { saveProducts, length } = this.props;
     const { search, searchList } = this.state;
     return (
       <>
@@ -58,7 +58,7 @@ class Home extends Component {
             >
               Pesquisar
             </button>
-            <CartButton products={ products } />
+            <CartButton length={ length } />
           </div>
           <h1 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
@@ -77,11 +77,11 @@ class Home extends Component {
 
 Home.propTypes = {
   saveProducts: PropTypes.func.isRequired,
-  products: PropTypes.arrayOf(PropTypes.object),
+  length: PropTypes.number,
 };
 
 Home.defaultProps = {
-  products: [],
+  length: 0,
 };
 
 export default Home;

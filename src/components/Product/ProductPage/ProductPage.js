@@ -39,10 +39,10 @@ class ProductPage extends Component {
 
   render() {
     const { name, image, cart, price, id } = this.state;
-    const { saveProducts, products } = this.props;
+    const { saveProducts, length } = this.props;
     return (
       <>
-        <CartButton products={ products } />
+        <CartButton length={ length } />
         <h1 data-testid="product-detail-name">{ name }</h1>
         <h2>
           R$
@@ -82,11 +82,11 @@ ProductPage.propTypes = {
     }).isRequired,
   }).isRequired,
   saveProducts: PropTypes.func.isRequired,
-  products: PropTypes.arrayOf(PropTypes.object),
+  length: PropTypes.number,
 };
 
 ProductPage.defaultProps = {
-  products: [],
+  length: 0,
 };
 
 export default ProductPage;

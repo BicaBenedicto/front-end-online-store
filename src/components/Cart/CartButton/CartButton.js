@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 
 class CartButton extends Component {
   render() {
-    const { products } = this.props;
-    const quantityItemsInCart = products.length;
+    const { length } = this.props;
     return (
       <div>
-        <span data-testid="shopping-cart-size">{quantityItemsInCart}</span>
+        <span data-testid="shopping-cart-size">{length}</span>
         <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
       </div>
     );
@@ -16,11 +15,11 @@ class CartButton extends Component {
 }
 
 CartButton.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object),
+  length: PropTypes.number,
 };
 
 CartButton.defaultProps = {
-  products: [],
+  length: 0,
 };
 
 export default CartButton;

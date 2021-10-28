@@ -9,9 +9,41 @@ export default class App extends Component {
     super();
     this.state = {
       products: [],
+      length: 0,
     };
     this.saveProducts = this.saveProducts.bind(this);
     this.removeProductQuantity = this.removeProductQuantity.bind(this);
+    this.getLengthProducts = this.getLengthProducts.bind(this);
+    this.saveProductsInStorage = this.saveProductsInStorage.bind(this);
+    this.loadProductsInStorage = this.loadProductsInStorage.bind(this);
+  }
+
+  componentDidMount() {
+    const getProducts = localStorage.getItem('products');
+    if (getProducts) return this.loadProductsInStorage();
+    this.getLengthProducts();
+  }
+
+  componentDidUpdate() {
+    this.saveProductsInStorage();
+  }
+
+  getLengthProducts() {
+    const { products } = this.state;
+    const lengthProducts = products.reduce((acc, product) => product.quantity + acc, 0);
+    console.log(lengthProducts);
+    this.setState({ length: lengthProducts });
+  }
+
+  loadProductsInStorage() {
+    const recoverProducts = localStorage.getItem('products');
+    console.log();
+    this.setState({ products: JSON.parse(recoverProducts) });
+  }
+
+  saveProductsInStorage() {
+    const { products } = this.state;
+    localStorage.setItem('products', JSON.stringify(products));
   }
 
   saveProducts({ target }) {
@@ -43,7 +75,7 @@ export default class App extends Component {
           return element;
         })
         : [...prevState.products, product]),
-    }));
+    }), this.getLengthProducts);
   }
 
   removeProductQuantity({ target }) {
@@ -73,23 +105,18 @@ export default class App extends Component {
         }
         return element;
       }),
-    }));
-  }
-
-  compareProductsRemove(prevState, id) {
-    const index = prevState.products.indexOf(id);
-    return prevState.products.splice(index, 0);
+    }), this.getLengthProducts);
   }
 
   render() {
-    const { products } = this.state;
+    const { products, length } = this.state;
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
             <Home
               saveProducts={ this.saveProducts }
-              products={ products }
+              length={ length }
             />
           </Route>
           <Route exact path="/cart">
@@ -107,7 +134,7 @@ export default class App extends Component {
                 <ProductPage
                   { ...props }
                   saveProducts={ this.saveProducts }
-                  products={ products }
+                  length={ length }
                 />)
             }
           />
