@@ -7,7 +7,7 @@
 .header {
   align-items: center;
   background: #202020;
-  color: #fff;
+  color: white;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -28,8 +28,8 @@
   margin-top: 20px;
 }
 
-.search-area input[type="text"] {
-  border: 0px;
+.search-area #search-input {
+  border: 0;
   font-size: 20px;
   height: 50px;
   padding-left: 20px;
@@ -37,12 +37,10 @@
 }
 
 .search-area button {
-  border: 0px;
+  border: 0;
   cursor: pointer;
   font-size: 20px;
   height: 50px;
   margin-left: 5px;
   width: 150px;
 }
-
-
