@@ -19,9 +19,9 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    this.getLengthProducts();
     const getProducts = localStorage.getItem('products');
     if (getProducts) return this.loadProductsInStorage();
-    this.getLengthProducts();
   }
 
   componentDidUpdate() {
@@ -124,6 +124,7 @@ export default class App extends Component {
               products={ products }
               removeProductQuantity={ this.removeProductQuantity }
               saveProducts={ this.saveProducts }
+              loadProductsInStorage={ this.loadProductsInStorage }
             />
           </Route>
           <Route
