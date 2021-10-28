@@ -37,7 +37,10 @@ export default class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <Home saveProducts={ this.saveProducts } />
+            <Home
+              saveProducts={ this.saveProducts }
+              products={ products }
+            />
           </Route>
           <Route exact path="/cart">
             <CartPage products={ products } />
@@ -47,7 +50,11 @@ export default class App extends Component {
             path="/product/:categoryId/:id/:title/"
             render={
               (props) => (
-                <ProductPage { ...props } saveProducts={ this.saveProducts } />)
+                <ProductPage
+                  { ...props }
+                  saveProducts={ this.saveProducts }
+                  products={ products }
+                />)
             }
           />
         </Switch>

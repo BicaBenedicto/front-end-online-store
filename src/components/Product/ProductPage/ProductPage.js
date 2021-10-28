@@ -11,7 +11,6 @@ class ProductPage extends Component {
       name: '',
       image: '',
       price: '',
-      loading: true,
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.clearProductInfo = this.clearProductInfo.bind(this);
@@ -35,17 +34,15 @@ class ProductPage extends Component {
     this.setState({
       image: thumbnail,
       price,
-      loading: false,
     });
   }
 
   render() {
-    const { name, image, loading, cart, price, id } = this.state;
-    const { saveProducts } = this.props;
-    if (loading) return <h1>Carregando...</h1>;
+    const { name, image, cart, price, id } = this.state;
+    const { saveProducts, products } = this.props;
     return (
       <>
-        <CartButton />
+        <CartButton products={ products } />
         <h1 data-testid="product-detail-name">{ name }</h1>
         <h2>
           R$
@@ -85,6 +82,11 @@ ProductPage.propTypes = {
     }).isRequired,
   }).isRequired,
   saveProducts: PropTypes.func.isRequired,
+  products: PropTypes.arrayOf(PropTypes.object),
+};
+
+ProductPage.defaultProps = {
+  products: [],
 };
 
 export default ProductPage;
