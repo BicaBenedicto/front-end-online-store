@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import CartPage from './components/Cart/CartPage/CartPage';
 import ProductPage from './components/Product/ProductPage/ProductPage';
+import CheckoutPage from './components/Checkout/CheckoutPage/CheckoutPage';
 
 export default class App extends Component {
   constructor() {
@@ -138,6 +139,11 @@ export default class App extends Component {
                   length={ length }
                 />)
             }
+          />
+          <Route
+            exact
+            path="/checkout"
+            render={ (props) => <CheckoutPage { ...props } products={ products } /> }
           />
         </Switch>
       </BrowserRouter>

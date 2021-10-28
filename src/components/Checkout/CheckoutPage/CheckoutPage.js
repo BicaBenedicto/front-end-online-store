@@ -42,6 +42,7 @@ export default class CheckoutPage extends Component {
             Insira seu endereço:
             <input type="text" id="inputAddress" data-testid="checkout-address" />
           </label>
+          <button type="submit">Finalizar Compra</button>
         </form>
       </>
     );
