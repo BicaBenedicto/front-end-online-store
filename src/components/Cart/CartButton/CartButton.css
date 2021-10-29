@@ -1,0 +1,10 @@
+.cartButton {
+  align-items: center;
+  display: flex;
+  margin-left: 30px;
+}
+
+.cartButtonImage {
+  align-items: flex-end;
+  width: 50px;
+}

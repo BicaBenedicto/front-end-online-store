@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import './Card.css';
 
 class Card extends Component {
   constructor() {
@@ -53,7 +54,7 @@ class Card extends Component {
       price, thumbnail, quantity, available_quantity: availableQuant,
       availableQuantity } = product;
     return (
-      <div name={ id } data-testid="product">
+      <div className="productCard" name={ id } data-testid="product">
         <img src={ thumbnail } alt={ title } />
         {(freeShipping) && <span data-testid="free-shipping">Frete Grátis</span>}
         <Link
@@ -62,7 +63,10 @@ class Card extends Component {
         >
           <span data-testid="shopping-cart-product-name">{title}</span>
         </Link>
-        <span>{price}</span>
+        <p>
+          R$
+          {price}
+        </p>
         <br />
         {cart
           ? (
