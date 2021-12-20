@@ -1,0 +1,30 @@
+.header-product-page {
+  align-items: center;
+  background: #202020;
+  color: white;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 20px;
+  width: 100%;
+}
+
+.product-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.productCard textarea {
+  border-radius: 5px;
+  height: 200px;
+  margin: 5px;
+  padding: 5px;
+  width: 80%;
+}
+
+.productCard h1 {
+  text-align: center;
+  width: 90%;
+}

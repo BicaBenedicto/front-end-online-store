@@ -1,15 +1,23 @@
 .productCard {
+  align-items: center;
+  box-shadow: 1px 1px 5px black;
+  border-radius: 20px 20px 0 0;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column;
+  justify-content: space-between;
   height: 400px;
-  margin: 5px 20px;
+  margin: 10px 20px;
   width: 30%;
 }
 
+.productCard:hover {
+  box-shadow: 1px 1px 10px lightskyblue;
+}
+
 .productCard a {
-  flex-basis: 100%;
   font-size: 18px;
-  height: 10px;
+  text-decoration: none;
+  width: 90%;
   margin: 10px 0;
 }
 
@@ -20,7 +28,14 @@
 }
 
 .productCard button {
-  flex-basis: 100%;
+  border: none;
+  background-color: rgb(118, 181, 206);
+  padding: 10px 0;
+  width: 100%;
+}
+
+.productCard button:hover {
+  background-color: lightskyblue;
 }
 
 .productCard p {

@@ -1,0 +1,13 @@
+.checkout-button {
+  color: white;
+  background-color: rgb(118, 181, 206);
+  text-decoration: none;
+  text-align: center;
+  font-size: 30px;
+  padding: 5px 0;
+  width: 100%;
+}
+
+.checkout-button:hover {
+  background-color: lightskyblue;
+}

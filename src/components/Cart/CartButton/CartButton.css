@@ -6,5 +6,25 @@
 
 .cartButtonImage {
   align-items: flex-end;
+  transition: 1s;
+  transform: translateY(8px);
   width: 50px;
+}
+
+.cartButtonImage:hover {
+  transition: 1s;
+  transform: scaleX(-1) translateX(-5px);
+}
+
+.cartButton:active {
+  transition: 0.2s;
+  transform: translateX(-40px)
+}
+
+.itemsLength {
+  color: white;
+  transform: translateX(-25px) translateY(-15px);
+}
+
+.itemsLength:hover {
 }

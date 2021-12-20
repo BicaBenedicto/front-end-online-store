@@ -7,17 +7,16 @@ class CartButton extends Component {
   render() {
     const { length } = this.props;
     return (
-      <div className="cartButton">
-        <Link to="/cart" data-testid="shopping-cart-button">
+      <Link to="/cart" data-testid="shopping-cart-button">
+        <div className="cartButton">
           <img
             src="https://icon-library.com/images/white-shopping-cart-icon/white-shopping-cart-icon-9.jpg"
             alt="cart"
             className="cartButtonImage"
           />
-
-        </Link>
         <span className="itemsLength" data-testid="shopping-cart-size">{length}</span>
-      </div>
+        </div>
+      </Link>
     );
   }
 }

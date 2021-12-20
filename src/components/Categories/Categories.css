@@ -21,4 +21,10 @@
   display: block;
   font-size: 15px;
   margin: 5px 0;
+  text-align: left;
+  width: 100%;
+}
+
+.categoriesList ul button:hover {
+  border-bottom: 1px solid black;
 }

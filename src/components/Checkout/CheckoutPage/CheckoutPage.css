@@ -1,0 +1,72 @@
+.checkout-page {
+  align-items: center;
+  background-color: rgb(240, 255, 255);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.checkout-product-list {
+  text-align: center;
+  width: 100%;
+}
+
+.checkout-title-table {
+  background-color: #202020;
+  color: white;
+  font-size: 20px;
+}
+
+.checkout-title-table th {
+  padding: 5px 10px;
+}
+
+.checkout-product-list td {
+  padding: 3px 10px;
+}
+
+.par-table {
+  background-color: hsl(210, 14%, 83%);
+}
+
+.impar-table {
+  background-color: hsl(210, 14%, 93%);
+}
+
+.checkout-form {
+  align-items: center;
+  background-color: hsl(0, 0%, 95%);
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  margin: 20px;
+  width: 30%;
+}
+
+.checkout-form label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.checkout-form input {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 100%;
+}
+
+.checkout-form button {
+  background-color: rgb(118, 181, 206);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  margin: 20px 0;
+  padding: 5px 0;
+  width: 100%;
+}
+
+.checkout-form button:hover {
+  background-color: lightskyblue;
+}
