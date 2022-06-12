@@ -2,6 +2,12 @@
 
 O projeto é um site de compras realizado em grupo, utilizando a API do mercado livre, podendo buscar diversos produtos, adicionar no carrinho, um simulador de sistema de login, com uma página com detalhes do produto onde é possivel avaliar ou comentar e uma etapa final para conclusão de compra.
 
+## Demonstração
+
+![Home](./imgs/Home.png)
+![Cart](./imgs/Cart.png)
+![Checkout](./imgs/checkout.png)
+
 ## Funcionalidades
 
 ### Front-End
