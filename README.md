@@ -4,9 +4,9 @@ O projeto é um site de compras realizado em grupo, utilizando a API do mercado 
 
 ## Demonstração
 
-![Home](./imgs/Home.png)
-![Cart](./imgs/Cart.png)
-![Checkout](./imgs/checkout.png)
+![Home](https://github.com/BicaBenedicto/front-end-online-store/blob/master/imgs/Home.PNG)
+![Cart](https://github.com/BicaBenedicto/front-end-online-store/raw/master/imgs/Cart.PNG)
+![Checkout](https://github.com/BicaBenedicto/front-end-online-store/blob/master/imgs/checkout.PNG)
 
 ## Funcionalidades
 
